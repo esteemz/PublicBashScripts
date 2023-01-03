@@ -1,2 +1,2 @@
 # PublicBashScripts
-Where I put my Bash Scripts
+Where I put my own Bash Scripts
