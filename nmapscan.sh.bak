@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# set the network range to scan
+network="192.168.0.0/24"
+
+# scan the network and save the output to a file
+nmap -sP $network > nmap_scan_results.txt
+
+# print the results to the terminal
+cat nmap_scan_results.txt

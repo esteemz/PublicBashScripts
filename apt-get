@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Check if the script is being run as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
+# Set up an array of useful package names
+declare -a packages=("htop" "nmap" "git" "tree" "vim")
+
+# Iterate through the array and install each package
+for package in "${packages[@]}"; do
+    if ! dpkg -s "$package" >/dev/null 2>&1; then
+        apt-get install -y "$package"
+    else
+        echo "$package is already installed"
+    fi
+done
+
+# Set up a trap to clean up temporary files on exit
+trap 'rm -f /tmp/*' EXIT
